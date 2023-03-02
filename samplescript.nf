@@ -133,6 +133,7 @@ process validate_bam {
    """
 }
 */
+
 /*
 Correcting invalid mapping quality error
 */
@@ -170,25 +171,6 @@ process Correct_By_AddOrReplace {
 }
 
 /*
-Validating final bam file
-*/
-/*
-process validate_final_bam {
-
-   input:
-   val gatk_path
-   val reads_with_RG
-  
-   output:
-   path "Validated_final"
-
-   """
-   $gatk_path ValidateSamFile  -I $reads_with_RG -MODE SUMMARY 2> >(tee err) 1> >(tee out) | tee > validated_final
-   """
-}
-/*
-
-/*
 Variant calling by gatk
 */
 
@@ -211,7 +193,7 @@ process callingVariant {
 
 
 workflow {
-   // fastqc_zip, fastc_html = quality_control (params.fastq_path)
+    fastqc_zip, fastc_html = quality_control (params.fastq_path)
     cut_adp = cut_adapters ([ params.fastq_path , params.adapter, params.quality])
     sed = sed_correcting (cut_adp)
     bwa_algn = align ( params.bwa_path, params.hg19_index_file, sed)
