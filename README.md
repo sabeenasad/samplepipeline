@@ -2,7 +2,7 @@ The script is written to analyze single end Fastq files and to generate the fina
 
 # Prerequisites for the pipeline
 For running this pipeline some prerequisites are needed.
-Nextflow version 22.04.3 build 5703
+Nextflow version 22.10.7
 Gatk version 4.1.9.0
 Bwa version 0.7.17
 hg19 index file
