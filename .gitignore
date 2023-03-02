@@ -131,4 +131,5 @@ dmypy.json
 # ignore nextflow files and folders
 .nextflow 
 work/
-.log 
+.log
+.log.* 
