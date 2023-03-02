@@ -10,7 +10,6 @@ process quality_control {
     path fastq_path
 
     output:
-    path "*_fastqc.zip"
     path "*_fastqc.html"
  
     """
@@ -193,9 +192,9 @@ process callingVariant {
 
 
 workflow {
-    fastqc_zip, fastc_html = quality_control (params.fastq_path)
+    fastc_html = quality_control (params.fastq_path)
     cut_adp = cut_adapters ([ params.fastq_path , params.adapter, params.quality])
-    sed = sed_correcting (cut_adp)
+    sed = sed_correction (cut_adp)
     bwa_algn = align ( params.bwa_path, params.hg19_index_file, sed)
     gen_sam = generate_sam (params.bwa_path, params.hg19_index_file, bwa_algn , sed)
     con_sam = convert_sam (gen_sam)
