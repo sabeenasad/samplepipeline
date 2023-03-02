@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# ignore nextflow files and folders
+.nextflow 
+work/
+.log 
